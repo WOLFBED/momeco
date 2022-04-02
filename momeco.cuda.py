@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-# --- by P.W.R. Marcoux (c) 2021
+# --- by P.W.R. Marcoux (c) 2022
 
 
-# --- notes ////////////////////////////////////////////////////////////////////
+# --- notes ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 """
 
 momeco.cuda.py : MOtion MEdia COnverter
-
+                 (cuda edition)
 
 ---------
 
@@ -20,16 +20,21 @@ momeco.cuda.py : MOtion MEdia COnverter
 NB : - currently only converts to mp4
      - currently only converts from gif, webm, mkv, mts, mpeg
 
+---------
+
+REQUIRES: - python
+          - ffmpeg
+
 
 """
-# --- imports //////////////////////////////////////////////////////////////////
+# --- imports //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import shell_colors as clic
 from sys import exit
 from subprocess import run
 from os import popen
 
-# --- ~statics /////////////////////////////////////////////////////////////////
+# --- ~statics /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 # paths
 FRO = "ToConvert/"
@@ -38,7 +43,7 @@ TOO = "Converted/"
 # other
 TYPES2DO = ["gif", "webm", "mkv", "MTS", "mpeg"]
 
-# --- actions //////////////////////////////////////////////////////////////////
+# --- actions //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 for t in TYPES2DO:
 
@@ -62,18 +67,9 @@ for t in TYPES2DO:
             genericC = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-hwaccel", "cuda", "-i", f"{FIF}", "-c:v", "hevc_nvenc", "-preset", "fast", "-f", "mp4", f"{tohere}{NEWFN}"]
 
             match ext:
-                case "gif":
-                    CONVCMD = genericC
-                case "webm":
-                    CONVCMD = genericC
-                case "mkv":
-                    CONVCMD = genericC
-                case "MTS":
-                    CONVCMD = genericC
-                case "mpeg":
-                    CONVCMD = genericC
+                case "gif" | "webm" | "mkv" | "MTS" | "mpeg" : CONVCMD = genericC
                 case _:
-                    print("wut duh fuk")
+                    print("extension not recognized")
 
             print(f" {clic.CC202}>>>>{clic.TRESET} {clic.CC2}looking at ......{clic.TRESET} {clic.CC83}{FIF} {clic.TRESET}")
             run(CONVCMD) # , "+"
@@ -83,6 +79,6 @@ for t in TYPES2DO:
 
 print("All done.  Hopefully it all went well.  Bye!\n")
 
-# --- end //////////////////////////////////////////////////////////////////////
+# --- end //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 exit()
