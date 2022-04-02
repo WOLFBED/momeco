@@ -14,3 +14,4 @@ N.B.
 REQUIRES
 * python
 * ffmpeg (as installed with default manjaro settings)
+* linux os
