@@ -81,7 +81,7 @@ elif isToConvPExist == True:
             exit()
         else:
             time.sleep(0.01)  # fake process
-            print("and contains files.  OK.")
+            print("and contains file(s).  OK.")
     except OSError as error:
         print(error)
         exit()
@@ -132,7 +132,7 @@ def zingzing():
 
         x2mp4(t,FRO,TOO)
 
-    print("All done.  Hopefully it all went well.  Bye!\n")
+    print("Done.\n")
 
 zingzing()
 
