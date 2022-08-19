@@ -87,7 +87,7 @@ elif isToConvPExist == True:
         exit()
 
 
-# -- conversion actions ///////////////
+# -- conversion actions ////////////////
 
 def zingzing():
 
